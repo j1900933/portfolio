@@ -1,0 +1,142 @@
+@charset "UTF-8";
+html {
+    height: 100%;
+}
+
+body {
+    font-family: "ヒラギノ丸ゴ ProN";
+    margin: 0px;
+}
+
+h1 {
+    margin: 8px 0px 0px 20px;
+}
+
+.page-header {
+    background-image: linear-gradient(15deg, #13547a 0%, #80d0c7 100%);
+    color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 90px;
+    padding-top: 25px;
+}
+
+ul.nav {
+    display: flex;
+    margin: 0px;
+}
+.nav li {
+    list-style: none;
+    text-decoration: none;
+    margin: 25px 30px 20px 30px;
+}
+
+ul.search {
+    text-align: right;
+}
+.search li {
+    display: inline-block;
+    color: dimgrey;
+    list-style: none;
+    margin: 25px 30px 20px 0px;
+}
+
+.rifine_search {
+    display: inline-block;
+}
+
+.keyword {
+    border-bottom: 1px solid #cccccc;
+    border-right: none;
+    border-left: none;
+    border-top: none;
+    margin-right: 30px;
+    width: 120px;
+    font-size: 15px;
+}
+
+.search_submit {
+    border: none;
+}
+
+table {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    border-collapse: collapse;
+      
+}
+
+th, td {
+    border: solid 1px gray;  
+}
+
+.list {
+    height: 45px;
+}
+
+select {
+    border-radius: 5px;
+    height: 25px;
+    width: 150px;
+    text-align: center;
+}
+
+button {
+    display: inline-block;
+    background-color: #20b2aa;
+    border: none;
+    color: #FFF;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    border-bottom: solid 2px #627295
+  }
+button:active {
+    -webkit-transform: translateY(4px);
+    transform: translateY(4px);
+    box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.2);
+  }
+
+li.page-item {
+    list-style: none;
+}
+
+.paginationWrap {
+    display: flex;
+    justify-content: center;
+    margin-top: 38px;
+    margin-bottom: 40px;
+}
+
+.paginationWrap ul.pagination {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+}
+
+.paginationWrap ul.pagination li {
+  display: inline;
+  margin-right: 4px;
+}
+
+.paginationWrap ul.pagination li a {
+    color: #2f3859;
+    padding: 8px 14px;
+    text-decoration: none;
+}
+
+.paginationWrap ul.pagination li a.active {
+    background-color: #4b90f6;
+    color: white;
+    border-radius: 40px;
+    width: 38px;
+    height: 38px;
+}
+
+.paginationWrap ul.pagination li a:hover:not(.active) {
+    background-color: #e1e7f0;
+    border-radius: 40px;
+}

@@ -1,0 +1,72 @@
+button {
+    float: right;
+    margin-right: 40px;
+}
+
+.name p {
+    text-align: center;
+    clear: both;
+}
+
+li {
+    list-style: none;
+}
+
+p {
+    font-size: 30px;
+}
+
+.main ul, .main h2 {
+    width: 320px;
+    margin: 5px auto 0px auto;
+    padding-left: 0px;
+}
+
+.main ul {
+    margin-bottom: 20px;
+}
+
+.main li {
+    text-align: left;
+    height: 5px;
+}
+
+section {
+    text-align: center;
+} 
+
+section h2 {
+    border : solid 1px white;
+    width: 200px;
+    margin: 60px 100px 5px 100px;
+}
+
+
+.box p {
+    display: inline-block;
+    font-size: 20px;
+    width: 300px;
+    height: 300px;
+    margin: 0px 100px 100px 100px;
+}
+
+.file {
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    width: 1100px;
+}
+
+object p {
+    font-size: 15px;
+}
+
+.resume {
+    margin: 0 80px;
+}
+
+
+
+
+
+
