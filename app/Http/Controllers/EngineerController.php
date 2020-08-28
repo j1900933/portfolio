@@ -19,7 +19,7 @@ class EngineerController extends Controller
             $query->where('address', 'like', '%' . $keyword . '%')->orWhere('last_name', 'like', '%' . $keyword . '%')->orWhere('first_name', 'like', '%' . $keyword . '%')->orWhere('gender', 'like', '%' . $keyword . '%');
         }
 
-        $engineers = $query->latest()->Paginate(3);
+        $engineers = $query->sortable()->latest()->Paginate(3);
         $employmentStatuses = EmploymentStatus::all();
         $engineerSkills = EngineerSkill::all();
         $humanSkills = HumanSkill::all();
@@ -38,7 +38,6 @@ class EngineerController extends Controller
     }
 
     public function confirm(Request $request)
-    // 正しい条件か確認して、NGなら入力画面に戻す、理由もつける
     {
         $request->validate([
             'last_name' => 'required|string|max:20',

@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\SoftDeletes;
-// use Kyslik\ColumnSortable\Sortable;
+use Kyslik\ColumnSortable\Sortable;
 
 class Engineer extends Model
 {
@@ -40,13 +40,12 @@ class Engineer extends Model
         return Carbon::parse($this->attributes['birth_date'])->age;
     }
 
-    protected $dates = ['birth_date'];
-
-    // use Sortable;
-    // public $sortable = ['full_name', 'age', 'gender', 'address'];
+    protected $dates = ['birth_date']; //.show format()
 
     protected $guarded = ['prefecture', 'town', 'city', 'after_address', 'action','q',];
 
     use SoftDeletes;
 
+    use Sortable;
+    public $sortable = ['id', 'last_name', 'birth_date', 'address'];
 }
