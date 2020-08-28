@@ -21,7 +21,7 @@
             </form>
             <li><a href="{{ route('engineers.index')}}">全て表示 : 並び替え解除</a></li>
         </ul>
-        <table class="tablesorter" id="engineers.table">
+        <table>
             <thead>
                 <tr>
                     <th>@sortablelink('id' , 'ID')</th>
@@ -114,8 +114,20 @@
                                 @endforeach
                             </select>
                         </td>
-                        <td><button onclick="location.href='{{ asset ($engineer->resume) }}'">DL</button></td>
-                        <td><button onclick="location.href='{{ asset ($engineer->job_history_sheet) }}'">DL</button></td>
+                        <td>
+                            @if($engineer->resume == "")
+                                <button onclick="window.alert('履歴書が登録されていません')">DL</button>
+                            @else
+                                <button onclick="location.href='{{ $engineer->resume }}'">DL</button>
+                            @endif
+                        </td>
+                        <td>
+                            @if($engineer->job_history_sheet == "")
+                                <button onclick="window.alert('職務履歴書が登録されていません')">DL</button>
+                            @else
+                                <button onclick="location.href='{{ $engineer->job_history_sheet }}'">DL</button>
+                            @endif
+                        </td>
                         <td>{{$engineer->comment}}</td>
                     </tr>
                 @endforeach
