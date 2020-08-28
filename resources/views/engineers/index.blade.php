@@ -3,7 +3,6 @@
     <head>
         <meta charset="UTF-8">
         <title>一覧画面</title>
-        <!-- <script src="{{ mix('/js/.js') }}"></script> -->
         <link rel="stylesheet" href="/engineers.css">
     </head>
     <body>
@@ -122,6 +121,6 @@
                 @endforeach
             </tbody>
         </table>
-        {{ $engineers->links('vendor.pagination.bootstrap-4') }}
+        {{ $engineers->appends(request()->query())->links('vendor.pagination.bootstrap-4') }}
     </body>
 </html>
