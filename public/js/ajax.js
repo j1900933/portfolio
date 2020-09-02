@@ -86,27 +86,43 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./resources/js/file_alert.js":
-/*!************************************!*\
-  !*** ./resources/js/file_alert.js ***!
-  \************************************/
+/***/ "./resources/js/ajax.js":
+/*!******************************!*\
+  !*** ./resources/js/ajax.js ***!
+  \******************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-function file_null() {
-  alert("登録されていません");
-}
+$('.comments').on('change', function () {
+  $.ajax({
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
+    url: "engineers/getData",
+    type: "post",
+    dataType: "json",
+    data: {
+      'id': $("#id").val(),
+      'comment': $(".comment").val()
+    }
+  }).done(function (data) {
+    console.log(data);
+  }).fail(function (_data) {
+    alert("ajax Error");
+  });
+  return false;
+});
 
 /***/ }),
 
 /***/ 1:
-/*!******************************************!*\
-  !*** multi ./resources/js/file_alert.js ***!
-  \******************************************/
+/*!************************************!*\
+  !*** multi ./resources/js/ajax.js ***!
+  \************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /var/www/training_osajima/resources/js/file_alert.js */"./resources/js/file_alert.js");
+module.exports = __webpack_require__(/*! /var/www/training_osajima/resources/js/ajax.js */"./resources/js/ajax.js");
 
 
 /***/ })

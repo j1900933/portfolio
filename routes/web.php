@@ -17,10 +17,12 @@ use function PHPSTORM_META\elementType;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
-Route::resource('engineers', 'EngineerController');
+Route::get('/', function () {
+    return view('welcome');
+});
 
 Route::post('engineers/confirm', 'EngineerController@confirm')->name('engineers.confirm');
+
+Route::post('engineers/getData', 'EngineerController@getData')->name('engineers.getData');
+
+Route::resource('engineers', 'EngineerController');

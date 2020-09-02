@@ -145,8 +145,17 @@ li.page-item {
     cursor: pointer;
     outline: none;
   }
-  #engineers.table .tablesorter-header-inner::after { 
-    content: '▼';
-    font-size: 12px;
-    margin-left: 5px;
-  }
+#engineers.table .tablesorter-header-inner::after { 
+content: '▼';
+font-size: 12px;
+margin-left: 5px;
+}
+
+.comment {
+border: none;
+outline: none;
+font-family: "ヒラギノ丸ゴ ProN";
+font-size: 15px;
+width: 100%;
+overflow-wrap:　break-word；；
+}

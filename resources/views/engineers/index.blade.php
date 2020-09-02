@@ -2,8 +2,11 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>一覧画面</title>
         <link rel="stylesheet" href="/engineers.css">
+        <script src="{{ mix('js/ajax.js') }}" defer></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     </head>
     <body>
         <header class="page-header">
@@ -70,6 +73,7 @@
                 @foreach($engineers as $engineer)
                     <tr class="list">
                         <td><a href="{{ route('engineers.show', $engineer)}}">{{$engineer->id}}</a></td>
+                        <input type="hidden" id="id" value="{{$engineer->id}}">
                         <td>
                             <select name="employmentStatus">
                                 @foreach($employmentStatuses as $employmentStatus)
@@ -116,19 +120,21 @@
                         </td>
                         <td>
                             @if($engineer->resume == "")
-                                <button onclick="window.alert('履歴書が登録されていません')">DL</button>
+                                <button onclick="alert('履歴書が登録されていません')">DL</button>
                             @else
                                 <button onclick="location.href='{{ $engineer->resume }}'">DL</button>
                             @endif
                         </td>
                         <td>
                             @if($engineer->job_history_sheet == "")
-                                <button onclick="window.alert('職務履歴書が登録されていません')">DL</button>
+                                <button onclick="alert('職務履歴書が登録されていません')">DL</button>
                             @else
                                 <button onclick="location.href='{{ $engineer->job_history_sheet }}'">DL</button>
                             @endif
                         </td>
-                        <td>{{$engineer->comment}}</td>
+                        <td style="position:relative" class="comments">
+                            <input type="text" class="comment" name="comment" value="{{$engineer->comment}}">
+                        </td>
                     </tr>
                 @endforeach
             </tbody>

@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Engineer;
 use App\Models\HumanSkill;
 use App\Models\InHouseStatus;
+use Illuminate\Support\Facades\Log;
 
 class EngineerController extends Controller
 {
@@ -25,6 +26,8 @@ class EngineerController extends Controller
         $humanSkills = HumanSkill::all();
         $inHouseStatuses = InHouseStatus::all();
         return view('engineers.index', compact('engineers', 'employmentStatuses', 'engineerSkills', 'humanSkills', 'inHouseStatuses'));
+
+
     }
 
     public function show(Engineer $engineer)
@@ -170,6 +173,7 @@ class EngineerController extends Controller
         $engineer->job_history_sheet = isset($read_job_path) ? $read_job_path : '';
         $engineer->save();
         return redirect()->route('engineers.show' , $engineer);
+        
     }
 
     public function destroy(Engineer $engineer)
@@ -179,4 +183,14 @@ class EngineerController extends Controller
         return redirect()->route('engineers.index');
     }
 
+    public function getData(Request $request)
+    {
+        $engineer = Engineer::find($request->id);
+        // dump($engineer = Engineer::find($request->id));
+        $engineer->fill($request->all())->save();
+        $comment = Engineer::select('id','comment')->get();
+        $json = ["comment" => $comment];
+        return response()->json($json);
+
+    }
 }
