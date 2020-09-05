@@ -73,24 +73,20 @@
                 @foreach($engineers as $engineer)
                     <tr class="list">
                         <td><a href="{{ route('engineers.show', $engineer)}}">{{$engineer->id}}</a></td>
-                        <input type="hidden" id="id" value="{{$engineer->id}}">
+                            <input type="hidden" class="id" value="{{$engineer->id}}">
                         <td>
-                            <select name="employmentStatus">
+                            <select class="employment" name="employmentStatus">
                                 @foreach($employmentStatuses as $employmentStatus)
-                                    <option value={{$employmentStatus->name}} @if($engineer->employment_status == $employmentStatus) selected @endif>{{$employmentStatus->name}}</option>
+                                    <option class="employment" value={{$employmentStatus->name_num}} @if($engineer->employment_status == $employmentStatus) selected @endif>{{$employmentStatus->name}}</option>
                                 @endforeach
                             </select>
                         </td>
                         <td>{{$engineer->full_name}}</td>
-                        <td>{{$engineer->age}}歳</td>
+                        <td>{{$engineer->age}}歳</td> 
                         <td>
-                            <select name="inHouseStatus">
+                            <select class="inHouseStatus" name="inHouseStatus">
                                 @foreach($inHouseStatuses as $inHouseStatus)
-                                    @if($inHouseStatus == $engineer->in_house_status)
-                                        <option value={{$inHouseStatus->name}} selected>{{$inHouseStatus->name}}</option>
-                                    @else
-                                        <option value={{$inHouseStatus->name}}>{{$inHouseStatus->name}}</option>
-                                    @endif
+                                    <option class="inHouseStatus" value={{$inHouseStatus->name_num}} @if($engineer->in_house_status == $inHouseStatus) selected @endif>{{$inHouseStatus->name}}</option>
                                 @endforeach
                             </select>
                         </td>
@@ -105,16 +101,16 @@
                             <td>北海道</td>
                         @endif
                         <td> 
-                            <select>
+                            <select class="engineerSkill">
                                 @foreach($engineerSkills as $engineerSkill)
-                                    <option value={{$engineerSkill->lebel}} @if($engineer->engineer_skill == $engineerSkill) selected @endif>{{$engineerSkill->lebel}}</option>
+                                    <option class="engineerSkill" value={{$engineerSkill->name_num}} @if($engineer->engineer_skill == $engineerSkill) selected @endif>{{$engineerSkill->lebel}}</option>
                                 @endforeach
                             </select>
                         </td>
                         <td>
-                            <select>
+                            <select class="humanSkill">
                                 @foreach($humanSkills as $humanSkill)
-                                    <option value={{$humanSkill->lebel}} @if($engineer->human_skill == $humanSkill) selected @endif>{{$humanSkill->lebel}}</option>
+                                    <option class="humanSkill" value={{$humanSkill->name_num}} @if($engineer->human_skill == $humanSkill) selected @endif>{{$humanSkill->lebel}}</option>
                                 @endforeach
                             </select>
                         </td>
@@ -133,7 +129,7 @@
                             @endif
                         </td>
                         <td style="position:relative" class="comments">
-                            <input type="text" class="comment" name="comment" value="{{$engineer->comment}}">
+                            <input type="text" class="comment" value="{{$engineer->comment}}">
                         </td>
                     </tr>
                 @endforeach

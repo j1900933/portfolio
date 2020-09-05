@@ -27,7 +27,7 @@ class EngineersSeeder extends Seeder
                 'closest_station' => '博多駅',
                 'educational_background' => '鱗滝道場卒',
                 'comment' => 'やさしい',
-                'employment_status_id' => 1,
+                'employment_status_id' => 3,
                 'in_house_status_id' => 1,
                 'engineer_skill_id' => 1,
                 'human_skill_id' => 1,

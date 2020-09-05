@@ -186,10 +186,9 @@ class EngineerController extends Controller
     public function getData(Request $request)
     {
         $engineer = Engineer::find($request->id);
-        // dump($engineer = Engineer::find($request->id));
-        $engineer->fill($request->all())->save();
-        $comment = Engineer::select('id','comment')->get();
-        $json = ["comment" => $comment];
+        $engineer->fill($request->all());
+        $engineer->save();
+        $json = Engineer::select('id','comment','employment_status_id','in_house_status_id','engineer_skill_id','human_skill_id')->get();
         return response()->json($json);
 
     }

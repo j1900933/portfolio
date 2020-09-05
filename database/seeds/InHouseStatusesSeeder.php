@@ -14,6 +14,7 @@ class InHouseStatusesSeeder extends Seeder
         DB::table('in_house_statuses')->insert([
             [
                 'name' => '営業中',
+                'name_num' => '1',
                 'started_at' => date('Y-m-d'),
                 'finish_at' => date('Y-m-d'),
                 'created_at' => date('Y-m-d'),
@@ -22,6 +23,7 @@ class InHouseStatusesSeeder extends Seeder
             ],
             [
                 'name' => '未分類',
+                'name_num' => '2',
                 'started_at' => date('Y-m-d'),
                 'finish_at' => date('Y-m-d'),
                 'created_at' => date('Y-m-d'),
@@ -30,6 +32,7 @@ class InHouseStatusesSeeder extends Seeder
             ],
             [
                 'name' => '研修中',
+                'name_num' => '3',
                 'started_at' => date('Y-m-d'),
                 'finish_at' => date('Y-m-d'),
                 'created_at' => date('Y-m-d'),
@@ -38,6 +41,7 @@ class InHouseStatusesSeeder extends Seeder
             ],
             [
                 'name' => '稼働中',
+                'name_num' => '4',
                 'started_at' => date('Y-m-d'),
                 'finish_at' => date('Y-m-d'),
                 'created_at' => date('Y-m-d'),
