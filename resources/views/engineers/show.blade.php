@@ -56,15 +56,19 @@
                 <div class="file">
                     <div class="resume">
                         <h2>履歴書</h2>
-                        <object data="{{ asset ($engineer->resume) }}" type="application/pdf" width="400px" height="350px">
-                            <p>表示されない時の表示: <a href="{{ asset ($engineer->resume) }}">画像 をダウンロード</a></p>
-                        </object>
+                        @if($engineer->resume != null)
+                            <object data="{{ asset ($engineer->resume) }}" type="application/pdf" width="400px" height="350px"></object>
+                        @else
+                            <p>No image</p>
+                        @endif
                     </div>
                     <div class="resume">
                         <h2>職務経歴書</h2>
-                        <object data="{{ asset ($engineer->job_history_sheet) }}" type="application/pdf" width="400px" height="350px">
-                            <p>表示されない時の表示: <a href="{{ asset ($engineer->job_history_sheet) }}">画像 をダウンロード</a></p>
-                        </object>
+                        @if($engineer->job_history_sheet != null)
+                            <object data="{{ asset ($engineer->job_history_sheet) }}" type="application/pdf" width="400px" height="350px"></object>
+                        @else
+                            <p>No image</p>
+                        @endif
                     </div>
                 </div>
             </section>

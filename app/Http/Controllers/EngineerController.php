@@ -14,8 +14,9 @@ class EngineerController extends Controller
 {
     public function index(Request $request)
     {
-        $keyword = $request->input('keyword');
         $query = Engineer::query();
+        $keyword = $request->input('keyword');
+
         if(!empty($keyword)){
             $query->where('address', 'like', '%' . $keyword . '%')->orWhere('last_name', 'like', '%' . $keyword . '%')->orWhere('first_name', 'like', '%' . $keyword . '%')->orWhere('gender', 'like', '%' . $keyword . '%');
         }
@@ -110,13 +111,10 @@ class EngineerController extends Controller
         
         $engineer = new Engineer;
         $data = $request->session()->get('engineer');
-        // dd($data);
         $resume_path = $data['read_resume_path'];
         $job_path = $data['read_job_path'];
 
-        //短く
         $from = $request->all();
-        // dd($from);
         unset($from['_token']);
         $engineer->fill($from);
         $engineer->address = $request->prefecture; 
@@ -188,8 +186,15 @@ class EngineerController extends Controller
         $engineer = Engineer::find($request->id);
         $engineer->fill($request->all());
         $engineer->save();
-        $json = Engineer::select('id','comment','employment_status_id','in_house_status_id','engineer_skill_id','human_skill_id')->get();
-        return response()->json($json);
+        return response()->json($engineer);
 
+    }
+
+    public function filterble(Request $request)
+    {
+        $engineers = Engineer::all();
+        $employmentFilterble = $request->input('employment_status_id');
+        $filterble = $engineers->where('employment_status_id', $employmentFilterble);
+        return response()->json($filterble);
     }
 }

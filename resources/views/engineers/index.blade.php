@@ -6,6 +6,7 @@
         <title>一覧画面</title>
         <link rel="stylesheet" href="/engineers.css">
         <script src="{{ mix('js/ajax.js') }}" defer></script>
+        <script src="{{ mix('js/filterble.js') }}" defer></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     </head>
     <body>
@@ -29,20 +30,22 @@
                 <tr>
                     <th>@sortablelink('id' , 'ID')</th>
                     <th>就職状況<br>
-                    <select>
-                        <option selected>全て</option>
-                        @foreach($employmentStatuses as $employmentStatus)
-                            <option>{{$employmentStatus->name}}</option>
-                        @endforeach
-                    </select>
+                    <form action="{{ route('engineers.index') }}">
+                        <select class="filterble">
+                            <option value="">全て</option>
+                            @foreach($employmentStatuses as $employmentStatus)
+                                <option value={{$employmentStatus->name_num}}>{{$employmentStatus->name}}</option>
+                            @endforeach
+                        </select>
+                    </form>
                     </th>
                     <th>@sortablelink('last_name' , '名前')</th>
                     <th>@sortablelink('birth_date' , '年齢')</th>
                     <th>採用状況<br>
                     <select>
-                        <option selected>全て</option>
+                        <option value="">全て</option>
                         @foreach($inHouseStatuses as $inHouseStatus)
-                            <option>{{$inHouseStatus->name}}</option>
+                            <option value={{$inHouseStatus->name_num}}>{{$inHouseStatus->name}}</option>
                         @endforeach
                     </select>
                     </th>
@@ -50,17 +53,16 @@
                     <th>@sortablelink('address' , '地域')</th>
                     <th>エンジニアスキル<br>
                     <select>
-                        <option selected>全て</option>
-                        @foreach($inHouseStatuses as $inHouseStatus)
-                            <option>{{$inHouseStatus->name}}</option>
+                        <option value="">全て</option>
+                        @foreach($engineerSkills as $engineerSkill)
+                            <option value={{$engineerSkill->name_num}}>{{$engineerSkill->lebel}}</option>
                         @endforeach
-                    </select>
                     </th>
                     <th>ヒューマンスキル<br>
                     <select>
-                        <option selected>全て</option>
+                        <option value="">全て</option>
                         @foreach($humanSkills as $humanSkill)
-                            <option>{{$humanSkill->lebel}}</option>
+                            <option value={{$humanSkill->name_num}}>{{$humanSkill->lebel}}</option>
                         @endforeach
                     </select>
                     </th>
@@ -75,7 +77,7 @@
                         <td><a href="{{ route('engineers.show', $engineer)}}">{{$engineer->id}}</a></td>
                             <input type="hidden" class="id" value="{{$engineer->id}}">
                         <td>
-                            <select class="employment" name="employmentStatus">
+                            <select class="employment">
                                 @foreach($employmentStatuses as $employmentStatus)
                                     <option class="employment" value={{$employmentStatus->name_num}} @if($engineer->employment_status == $employmentStatus) selected @endif>{{$employmentStatus->name}}</option>
                                 @endforeach
@@ -84,7 +86,7 @@
                         <td>{{$engineer->full_name}}</td>
                         <td>{{$engineer->age}}歳</td> 
                         <td>
-                            <select class="inHouseStatus" name="inHouseStatus">
+                            <select class="inHouseStatus">
                                 @foreach($inHouseStatuses as $inHouseStatus)
                                     <option class="inHouseStatus" value={{$inHouseStatus->name_num}} @if($engineer->in_house_status == $inHouseStatus) selected @endif>{{$inHouseStatus->name}}</option>
                                 @endforeach
