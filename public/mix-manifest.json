@@ -1,6 +1,6 @@
 {
-    "/js/ajax.js": "/js/ajax.js",
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
-    "/js/filterble.js": "/js/filterble.js"
+    "/js/dataUpdate.js": "/js/dataUpdate.js",
+    "/js/filter.js": "/js/filter.js"
 }

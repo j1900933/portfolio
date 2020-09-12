@@ -26,9 +26,9 @@ Route::get('/', 'EngineerController@index')->name('engineers.index');
 
 Route::post('engineers/confirm', 'EngineerController@confirm')->name('engineers.confirm');
 
-Route::post('engineers/getData', 'EngineerController@getData')->name('engineers.getData');
+Route::post('engineers/indexUpdate', 'EngineerController@indexUpdate')->name('engineers.indexUpdate'); //getかPOSTに揃える,dataという名前を使わない getData -> indexUpdateに変更
 
-Route::get('engineers/filterble', 'EngineerController@filterble')->name('engineers.filerble');
+Route::get('engineers/filter', 'EngineerController@filter')->name('engineers.filer'); //名前のスペルが違う　filterble -> filterに修正
 
 Route::resource('engineers', 'EngineerController', ['except' => ['index']]);
 

@@ -144,18 +144,18 @@ li.page-item {
 #engineers.table .tablesorter-header {
     cursor: pointer;
     outline: none;
-  }
+}
 #engineers.table .tablesorter-header-inner::after { 
-content: '▼';
-font-size: 12px;
-margin-left: 5px;
+    content: '▼';
+    font-size: 12px;
+    margin-left: 5px;
 }
 
 .comment {
-border: none;
-outline: none;
-font-family: "ヒラギノ丸ゴ ProN";
-font-size: 15px;
-width: 100%;
-overflow-wrap:　break-word；；
+    border: none;
+    outline: none;
+    font-family: "ヒラギノ丸ゴ ProN";
+    font-size: 15px;
+    width: 100%;
+    overflow-wrap:　break-word；；
 }

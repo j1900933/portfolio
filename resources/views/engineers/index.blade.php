@@ -4,9 +4,9 @@
         <meta charset="UTF-8">
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>一覧画面</title>
-        <link rel="stylesheet" href="/engineers.css">
-        <script src="{{ mix('js/ajax.js') }}" defer></script>
-        <script src="{{ mix('js/filterble.js') }}" defer></script>
+        <link rel="stylesheet" href="/css/engineers.css">
+        <script src="{{ mix('js/dataUpdate.js') }}" defer></script>
+        <script src="{{ mix('js/filter.js') }}" defer></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     </head>
     <body>
@@ -30,8 +30,8 @@
                 <tr>
                     <th>@sortablelink('id' , 'ID')</th>
                     <th>就職状況<br>
-                    <form action="{{ route('engineers.index') }}">
-                        <select class="filterble">
+                    <form>
+                        <select class="filter">
                             <option value="">全て</option>
                             @foreach($employmentStatuses as $employmentStatus)
                                 <option value={{$employmentStatus->name_num}}>{{$employmentStatus->name}}</option>
@@ -55,14 +55,15 @@
                     <select>
                         <option value="">全て</option>
                         @foreach($engineerSkills as $engineerSkill)
-                            <option value={{$engineerSkill->name_num}}>{{$engineerSkill->lebel}}</option>
+                        <!-- lebelじゃない === levelに変更 -->
+                            <option value={{$engineerSkill->name_num}}>{{$engineerSkill->level}}</option> 
                         @endforeach
                     </th>
                     <th>ヒューマンスキル<br>
                     <select>
                         <option value="">全て</option>
                         @foreach($humanSkills as $humanSkill)
-                            <option value={{$humanSkill->name_num}}>{{$humanSkill->lebel}}</option>
+                            <option value={{$humanSkill->name_num}}>{{$humanSkill->level}}</option>
                         @endforeach
                     </select>
                     </th>
@@ -75,11 +76,10 @@
                 @foreach($engineers as $engineer)
                     <tr class="list">
                         <td><a href="{{ route('engineers.show', $engineer)}}">{{$engineer->id}}</a></td>
-                            <input type="hidden" class="id" value="{{$engineer->id}}">
                         <td>
                             <select class="employment">
                                 @foreach($employmentStatuses as $employmentStatus)
-                                    <option class="employment" value={{$employmentStatus->name_num}} @if($engineer->employment_status == $employmentStatus) selected @endif>{{$employmentStatus->name}}</option>
+                                    <option value={{$employmentStatus->name_num}} @if($engineer->employment_status == $employmentStatus) selected @endif>{{$employmentStatus->name}}</option>
                                 @endforeach
                             </select>
                         </td>
@@ -88,7 +88,7 @@
                         <td>
                             <select class="inHouseStatus">
                                 @foreach($inHouseStatuses as $inHouseStatus)
-                                    <option class="inHouseStatus" value={{$inHouseStatus->name_num}} @if($engineer->in_house_status == $inHouseStatus) selected @endif>{{$inHouseStatus->name}}</option>
+                                    <option value={{$inHouseStatus->name_num}} @if($engineer->in_house_status == $inHouseStatus) selected @endif>{{$inHouseStatus->name}}</option>
                                 @endforeach
                             </select>
                         </td>
@@ -105,33 +105,33 @@
                         <td> 
                             <select class="engineerSkill">
                                 @foreach($engineerSkills as $engineerSkill)
-                                    <option class="engineerSkill" value={{$engineerSkill->name_num}} @if($engineer->engineer_skill == $engineerSkill) selected @endif>{{$engineerSkill->lebel}}</option>
+                                    <option value={{$engineerSkill->name_num}} @if($engineer->engineer_skill == $engineerSkill) selected @endif>{{$engineerSkill->level}}</option>
                                 @endforeach
                             </select>
                         </td>
                         <td>
                             <select class="humanSkill">
                                 @foreach($humanSkills as $humanSkill)
-                                    <option class="humanSkill" value={{$humanSkill->name_num}} @if($engineer->human_skill == $humanSkill) selected @endif>{{$humanSkill->lebel}}</option>
+                                    <option value={{$humanSkill->name_num}} @if($engineer->human_skill == $humanSkill) selected @endif>{{$humanSkill->level}}</option>
                                 @endforeach
                             </select>
                         </td>
                         <td>
                             @if($engineer->resume == "")
-                                <button onclick="alert('履歴書が登録されていません')">DL</button>
+                                <button type="button" onclick="alert('履歴書が登録されていません')">DL</button>
                             @else
-                                <button onclick="location.href='{{ $engineer->resume }}'">DL</button>
+                                <button type="button" onclick="location.href='{{ $engineer->resume }}'">DL</button>
                             @endif
                         </td>
                         <td>
                             @if($engineer->job_history_sheet == "")
-                                <button onclick="alert('職務履歴書が登録されていません')">DL</button>
+                                <button type="button" onclick="alert('職務履歴書が登録されていません')">DL</button>
                             @else
-                                <button onclick="location.href='{{ $engineer->job_history_sheet }}'">DL</button>
+                                <button type="button" onclick="location.href='{{ $engineer->job_history_sheet }}'">DL</button>
                             @endif
                         </td>
                         <td style="position:relative" class="comments">
-                            <input type="text" class="comment" value="{{$engineer->comment}}">
+                            <input type="text" class="comment" data-id="{{$engineer->id}}" value="{{$engineer->comment}}">
                         </td>
                     </tr>
                 @endforeach

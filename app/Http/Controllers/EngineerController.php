@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Engineer;
 use App\Models\HumanSkill;
 use App\Models\InHouseStatus;
+use Facade\Ignition\DumpRecorder\Dump;
 use Illuminate\Support\Facades\Log;
 
 class EngineerController extends Controller
@@ -114,9 +115,24 @@ class EngineerController extends Controller
         $resume_path = $data['read_resume_path'];
         $job_path = $data['read_job_path'];
 
-        $from = $request->all();
-        unset($from['_token']);
-        $engineer->fill($from);
+        $validated = $request->validate([
+            'last_name' => 'required|string|max:20',
+            'first_name' => 'required|string|max:20',
+            'last_name_furigana' => 'required|string|max:20|regex:/^[ア-ン゛゜ァ-ォャ-ョー]+$/u',
+            'first_name_furigana' => 'required|string|max:20|regex:/^[ア-ン゛゜ァ-ォャ-ョー]+$/u',
+            'birth_date' => 'required|date_format:"Y-m-d"|before:today',
+            'email' => 'required|email|unique:engineers',
+            'tel' => 'regex:/^[0-9]{2,4}-[0-9]{3,4}-[0-9]{3,4}$/',
+            'prefecture' => 'required|string',
+            'after_address' => 'required',
+            'postal_code' => 'required|regex:/^[0-9]{3}-[0-9]{4}$/',
+            'closest_station' => 'required|string',
+            'educational_background' => 'required|string',
+            'resume' => 'file|mimes:pdf', 
+            'job_history_sheet' => 'file|mimes:pdf',
+        ]);
+        unset($validated['_token']);
+        $engineer->fill($validated);
         $engineer->address = $request->prefecture; 
         $engineer->address .= $request->city; 
         $engineer->address .= $request->town; 
@@ -164,10 +180,24 @@ class EngineerController extends Controller
             $read_job_path = str_replace('public/', 'storage/', $job_path);
         }
 
-        $from = $request->all();
-        unset($from['_token']);
-        $engineer->fill($from);
-        $engineer->resume = isset($read_resume_path) ? $read_resume_path : '';
+        $validated = $request->validate([
+            'last_name' => 'required|string|max:10',
+            'first_name' => 'required|string|max:10',
+            'last_name_furigana' => 'required|string|max:20|regex:/^[ア-ン゛゜ァ-ォャ-ョー]+$/u',
+            'first_name_furigana' => 'required|string|max:20|regex:/^[ア-ン゛゜ァ-ォャ-ョー]+$/u',
+            'birth_date' => 'required|date_format:"Y-m-d"|before:today',
+            'email' => 'required|email',
+            'tel' => 'regex:/^[0-9]{2,4}-[0-9]{3,4}-[0-9]{3,4}$/',
+            'address' => 'required|string',
+            'postal_code' => 'required|regex:/^[0-9]{3}-[0-9]{4}$/',
+            'closest_station' => 'required|string',
+            'educational_background' => 'required|string',
+            'resume' => 'file|mimes:pdf',
+            'job_history_sheet' => 'file|mimes:pdf',
+        ]);//all()はだめ $validated = $request->validate(...)
+        unset($validated['_token']);
+        $engineer->fill($validated); //fillじゃis_admin守れない
+        $engineer->resume = isset($read_resume_path) ? $read_resume_path : ''; //null合体演算子
         $engineer->job_history_sheet = isset($read_job_path) ? $read_job_path : '';
         $engineer->save();
         return redirect()->route('engineers.show' , $engineer);
@@ -181,16 +211,15 @@ class EngineerController extends Controller
         return redirect()->route('engineers.index');
     }
 
-    public function getData(Request $request)
+    public function indexUpdate(Request $request)
     {
         $engineer = Engineer::find($request->id);
         $engineer->fill($request->all());
-        $engineer->save();
+        $engineer->save();//バリデーションをやる（クライアントサイドから意図しない入力される）
         return response()->json($engineer);
-
     }
 
-    public function filterble(Request $request)
+    public function filter(Request $request)
     {
         $engineers = Engineer::all();
         $employmentFilterble = $request->input('employment_status_id');

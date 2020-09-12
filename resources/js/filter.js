@@ -10,6 +10,7 @@ $('.filterble').on('change',function(){
     })
     .done(function(data){
         console.log(data);
+        
     })
     .fail(function(_data){
         alert("絞り込み検索失敗");

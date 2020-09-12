@@ -2,8 +2,8 @@
     <head>
         <meta charset="UTF-8">
         <title>新規登録画面</title>
-        <link rel="stylesheet" href="/engineers.css">
-        <link rel="stylesheet" href="/create.css">
+        <link rel="stylesheet" href="/css/engineers.css">
+        <link rel="stylesheet" href="/css/create.css">
     </head>
     <body>
         <header class="page-header">

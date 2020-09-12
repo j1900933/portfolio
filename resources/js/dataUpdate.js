@@ -1,12 +1,19 @@
+var id_data = $('.comment').data('id');
+
+var result = $('.comment').map(function(){
+    return $(this).data();
+}).toArray();
+console.log(result);
+
 $('.comments').on('change',function(){
     $.ajax({
         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-        url:"engineers/getData",
+        url:"engineers/indexUpdate",
         type:"post",
         dataType:"json",
         data:{
-            'id':$(".id").val(),
-            'comment':$(".comment").val(),
+            'id':result,
+            'comment':$(".comment").val(), // `.comments` クラスを持っている要素に data-* 属性で id をもたせる
         },
     })
     .done(function(data){
@@ -21,7 +28,7 @@ $('.comments').on('change',function(){
 $('.employment').on('change',function(){
     $.ajax({
         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-        url:"engineers/getData",
+        url:"engineers/indexUpdate",
         type:"post",
         dataType:"json",
         data:{
@@ -41,7 +48,7 @@ $('.employment').on('change',function(){
 $('.inHouseStatus').on('change',function(){
     $.ajax({
         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-        url:"engineers/getData",
+        url:"engineers/indexUpdate",
         type:"post",
         dataType:"json",
         data:{
@@ -61,7 +68,7 @@ $('.inHouseStatus').on('change',function(){
 $('.engineerSkill').on('change',function(){
     $.ajax({
         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-        url:"engineers/getData",
+        url:"engineers/indexUpdate",
         type:"post",
         dataType:"json",
         data:{
@@ -81,7 +88,7 @@ $('.engineerSkill').on('change',function(){
 $('.humanSkill').on('change',function(){
     $.ajax({
         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-        url:"engineers/getData",
+        url:"engineers/indexUpdate",
         type:"post",
         dataType:"json",
         data:{

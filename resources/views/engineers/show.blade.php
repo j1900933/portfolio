@@ -3,8 +3,8 @@
     <head>
         <meta charset="UTF-8">
         <title>詳細画面</title>
-        <link rel="stylesheet" href="/engineers.css">
-        <link rel="stylesheet" href="/show.css">
+        <link rel="stylesheet" href="/css/engineers.css">
+        <link rel="stylesheet" href="/css/show.css">
     </head>
     <body>
         <header class="page-header">

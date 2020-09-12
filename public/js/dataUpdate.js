@@ -84,17 +84,129 @@
 /******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */,
-/* 1 */
+/******/ ({
+
+/***/ "./resources/js/dataUpdate.js":
 /*!************************************!*\
-  !*** multi ./resources/js/ajax.js ***!
+  !*** ./resources/js/dataUpdate.js ***!
   \************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var id_data = $('.comment').data('id');
+var result = $('.comment').map(function () {
+  return $(this).data();
+}).toArray();
+console.log(result);
+$('.comments').on('change', function () {
+  $.ajax({
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
+    url: "engineers/indexUpdate",
+    type: "post",
+    dataType: "json",
+    data: {
+      'id': result,
+      'comment': $(".comment").val() // `.comments` クラスを持っている要素に data-* 属性で id をもたせる
+
+    }
+  }).done(function (data) {
+    console.log(data);
+  }).fail(function (_data) {
+    alert("ajax Error");
+  });
+  return false;
+});
+$('.employment').on('change', function () {
+  $.ajax({
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
+    url: "engineers/indexUpdate",
+    type: "post",
+    dataType: "json",
+    data: {
+      'id': $(".id").val(),
+      'employment_status_id': $(".employment").val()
+    }
+  }).done(function (data) {
+    console.log(data);
+  }).fail(function (_data) {
+    alert("ajax Error");
+  });
+  return false;
+});
+$('.inHouseStatus').on('change', function () {
+  $.ajax({
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
+    url: "engineers/indexUpdate",
+    type: "post",
+    dataType: "json",
+    data: {
+      'id': $(".id").val(),
+      'in_house_status_id': $(".inHouseStatus").val()
+    }
+  }).done(function (data) {
+    console.log(data);
+  }).fail(function (_data) {
+    alert("ajax Error");
+  });
+  return false;
+});
+$('.engineerSkill').on('change', function () {
+  $.ajax({
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
+    url: "engineers/indexUpdate",
+    type: "post",
+    dataType: "json",
+    data: {
+      'id': $(".id").val(),
+      'engineer_skill_id': $(".engineerSkill").val()
+    }
+  }).done(function (data) {
+    console.log(data);
+  }).fail(function (_data) {
+    alert("ajax Error");
+  });
+  return false;
+});
+$('.humanSkill').on('change', function () {
+  $.ajax({
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
+    url: "engineers/indexUpdate",
+    type: "post",
+    dataType: "json",
+    data: {
+      'id': $(".id").val(),
+      'human_skill_id': $(".humanSkill").val()
+    }
+  }).done(function (data) {
+    console.log(data);
+  }).fail(function (_data) {
+    alert("ajax Error");
+  });
+  return false;
+});
+
+/***/ }),
+
+/***/ 1:
+/*!******************************************!*\
+  !*** multi ./resources/js/dataUpdate.js ***!
+  \******************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-!(function webpackMissingModule() { var e = new Error("Cannot find module '/var/www/training_osajima/resources/js/ajax.js'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+module.exports = __webpack_require__(/*! /var/www/training_osajima/resources/js/dataUpdate.js */"./resources/js/dataUpdate.js");
 
 
 /***/ })
-/******/ ]);
+
+/******/ });
