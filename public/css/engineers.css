@@ -83,7 +83,6 @@ select {
     width: 150px;
     text-align: center;
 }
-
 button {
     display: inline-block;
     background-color: #20b2aa;
@@ -93,12 +92,38 @@ button {
     width: 40px;
     height: 40px;
     border-bottom: solid 2px #627295
-  }
-button:active {
+}
+button {
     -webkit-transform: translateY(4px);
     transform: translateY(4px);
     box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.2);
-  }
+}
+
+.resume_DL {
+    display: inline-block;
+    background-color: #20b2aa;
+    border: none;
+    color: #FFF;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    border-bottom: solid 2px #627295
+}
+.resume_DL:active {
+    -webkit-transform: translateY(4px);
+    transform: translateY(4px);
+    box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.2);
+}
+
+.resume_none {
+    display: inline-block;
+    background-color: gray;
+    border: none;
+    color: #FFF;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+}
 
 li.page-item {
     list-style: none;

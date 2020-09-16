@@ -1,16 +1,15 @@
-$('.filterble').on('change',function(){
+$('.squeeze').on('change',function(){
     $.ajax({
         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-        url:"engineers/filterble",
+        url:"engineers/squeeze",
         type:"get",
-        dataType:"json",
         data:{
-            'employment_status_id':$('.filterble').val(),
+            'employment_status_id':$('.squeeze').val(),
         },
     })
     .done(function(data){
         console.log(data);
-        
+        $('.squeeze').html(data);
     })
     .fail(function(_data){
         alert("絞り込み検索失敗");

@@ -6,7 +6,6 @@
         <title>一覧画面</title>
         <link rel="stylesheet" href="/css/engineers.css">
         <script src="{{ mix('js/dataUpdate.js') }}" defer></script>
-        <script src="{{ mix('js/filter.js') }}" defer></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     </head>
     <body>
@@ -25,16 +24,16 @@
             </form>
             <li><a href="{{ route('engineers.index')}}">全て表示 : 並び替え解除</a></li>
         </ul>
-        <table>
+        <table class="engineers_table"> 
             <thead>
                 <tr>
                     <th>@sortablelink('id' , 'ID')</th>
                     <th>就職状況<br>
-                    <form>
-                        <select class="filter">
-                            <option value="">全て</option>
+                    <form action="{{ route('engineers.index') }}">
+                        <select name="employmentStatus" onchange="submit(this.form);">
+                            <option value=""><a href="{{ route('engineers.index')}}">全て</a></option>
                             @foreach($employmentStatuses as $employmentStatus)
-                                <option value={{$employmentStatus->name_num}}>{{$employmentStatus->name}}</option>
+                                <option value={{$employmentStatus->id}}>{{$employmentStatus->name}}</option>                           
                             @endforeach
                         </select>
                     </form>
@@ -42,53 +41,59 @@
                     <th>@sortablelink('last_name' , '名前')</th>
                     <th>@sortablelink('birth_date' , '年齢')</th>
                     <th>採用状況<br>
-                    <select>
-                        <option value="">全て</option>
-                        @foreach($inHouseStatuses as $inHouseStatus)
-                            <option value={{$inHouseStatus->name_num}}>{{$inHouseStatus->name}}</option>
-                        @endforeach
-                    </select>
+                    <form action="{{ route('engineers.index') }}">
+                        <select name="inHouseStatus" onchange="submit(this.form);">
+                            <option value=""><a href="{{ route('engineers.index') }}">全て</a></option>
+                            @foreach($inHouseStatuses as $inHouseStatus)
+                                <option value={{$inHouseStatus->id}}>{{$inHouseStatus->name}}</option>
+                            @endforeach
+                        </select>
+                    </form>
                     </th>
                     <th>性別</th>
                     <th>@sortablelink('address' , '地域')</th>
                     <th>エンジニアスキル<br>
-                    <select>
-                        <option value="">全て</option>
-                        @foreach($engineerSkills as $engineerSkill)
-                        <!-- lebelじゃない === levelに変更 -->
-                            <option value={{$engineerSkill->name_num}}>{{$engineerSkill->level}}</option> 
-                        @endforeach
+                    <form action="{{ route('engineers.index') }}">
+                        <select name="engineerSkill" onchange="submit(this.form);">
+                            <option value=""><a href="{{ route('engineers.index') }}">全て</a></option>
+                            @foreach($engineerSkills as $engineerSkill)
+                                <option value={{$engineerSkill->id}}>{{$engineerSkill->level}}</option> 
+                            @endforeach
+                        </select>
+                    </form>
                     </th>
                     <th>ヒューマンスキル<br>
-                    <select>
-                        <option value="">全て</option>
-                        @foreach($humanSkills as $humanSkill)
-                            <option value={{$humanSkill->name_num}}>{{$humanSkill->level}}</option>
-                        @endforeach
-                    </select>
+                    <form action="{{ route('engineers.index') }}">
+                        <select name="humanSkill" onchange="submit(this.form);">
+                            <option value=""><a href="{{ route('engineers.index') }}">全て</a></option>
+                            @foreach($humanSkills as $humanSkill)
+                                <option value={{$humanSkill->id}}>{{$humanSkill->level}}</option>
+                            @endforeach
+                        </select>
+                    </form>
                     </th>
                     <th>履歴書</th>
                     <th>職務経歴書</th>
                     <th>メモ</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="engineers">
                 @foreach($engineers as $engineer)
                     <tr class="list">
                         <td><a href="{{ route('engineers.show', $engineer)}}">{{$engineer->id}}</a></td>
                         <td>
-                            <select class="employment">
+                            <select class="employment" data-id="{{$engineer->id}}">
                                 @foreach($employmentStatuses as $employmentStatus)
-                                    <option value={{$employmentStatus->name_num}} @if($engineer->employment_status == $employmentStatus) selected @endif>{{$employmentStatus->name}}</option>
+                                    <option value={{$employmentStatus->id}} @if($engineer->employment_status == $employmentStatus) selected @endif>{{$employmentStatus->name}}</option>
                                 @endforeach
                             </select>
                         </td>
                         <td>{{$engineer->full_name}}</td>
                         <td>{{$engineer->age}}歳</td> 
                         <td>
-                            <select class="inHouseStatus">
+                            <select class="inHouseStatus" data-id="{{$engineer->id}}">
                                 @foreach($inHouseStatuses as $inHouseStatus)
-                                    <option value={{$inHouseStatus->name_num}} @if($engineer->in_house_status == $inHouseStatus) selected @endif>{{$inHouseStatus->name}}</option>
+                                    <option value={{$inHouseStatus->id}} @if($engineer->in_house_status == $inHouseStatus) selected @endif>{{$inHouseStatus->name}}</option>
                                 @endforeach
                             </select>
                         </td>
@@ -103,34 +108,36 @@
                             <td>北海道</td>
                         @endif
                         <td> 
-                            <select class="engineerSkill">
+                            <select class="engineerSkill" data-id="{{$engineer->id}}">
                                 @foreach($engineerSkills as $engineerSkill)
-                                    <option value={{$engineerSkill->name_num}} @if($engineer->engineer_skill == $engineerSkill) selected @endif>{{$engineerSkill->level}}</option>
+                                    <option value={{$engineerSkill->id}} @if($engineer->engineer_skill == $engineerSkill) selected @endif>{{$engineerSkill->level}}</option>
                                 @endforeach
                             </select>
                         </td>
                         <td>
-                            <select class="humanSkill">
+                            <select class="humanSkill" data-id="{{$engineer->id}}">
                                 @foreach($humanSkills as $humanSkill)
-                                    <option value={{$humanSkill->name_num}} @if($engineer->human_skill == $humanSkill) selected @endif>{{$humanSkill->level}}</option>
+                                    <option value={{$humanSkill->id}} @if($engineer->human_skill == $humanSkill) selected @endif>{{$humanSkill->level}}</option>
                                 @endforeach
                             </select>
                         </td>
                         <td>
                             @if($engineer->resume == "")
-                                <button type="button" onclick="alert('履歴書が登録されていません')">DL</button>
+                                <button type="button" class="resume_none" onclick="alert('履歴書が登録されていません')">None</button>
                             @else
-                                <button type="button" onclick="location.href='{{ $engineer->resume }}'">DL</button>
+                                <button type="button" class="resume_DL" onclick="location.href='{{ $engineer->resume }}'">DL</button>
                             @endif
                         </td>
                         <td>
+                        <!-- //type="button"追加 -->
+                        <!-- ファイルない時は表示を変える -->
                             @if($engineer->job_history_sheet == "")
-                                <button type="button" onclick="alert('職務履歴書が登録されていません')">DL</button>
+                                <button type="button" class="resume_none" onclick="alert('職務履歴書が登録されていません')">None</button>
                             @else
-                                <button type="button" onclick="location.href='{{ $engineer->job_history_sheet }}'">DL</button>
+                                <button type="button" class="resume_DL" onclick="location.href='{{ $engineer->job_history_sheet }}'">DL</button>
                             @endif
                         </td>
-                        <td style="position:relative" class="comments">
+                        <td style="position:relative">
                             <input type="text" class="comment" data-id="{{$engineer->id}}" value="{{$engineer->comment}}">
                         </td>
                     </tr>

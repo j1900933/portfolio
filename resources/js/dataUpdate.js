@@ -1,19 +1,12 @@
-var id_data = $('.comment').data('id');
-
-var result = $('.comment').map(function(){
-    return $(this).data();
-}).toArray();
-console.log(result);
-
-$('.comments').on('change',function(){
+$('.comment').on('change',function(){
     $.ajax({
         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
         url:"engineers/indexUpdate",
         type:"post",
         dataType:"json",
         data:{
-            'id':result,
-            'comment':$(".comment").val(), // `.comments` クラスを持っている要素に data-* 属性で id をもたせる
+            'id':$(this).data('id'),
+            'comment':$(this).val(), // `.comments` クラスを持っている要素に data-* 属性で id をもたせる
         },
     })
     .done(function(data){
@@ -32,8 +25,8 @@ $('.employment').on('change',function(){
         type:"post",
         dataType:"json",
         data:{
-            'id':$(".id").val(),
-            'employment_status_id':$(".employment").val(),
+            'id':$(this).data('id'),
+            'employment_status_id':$(this).val(),
         },
     })
     .done(function(data){
@@ -52,8 +45,8 @@ $('.inHouseStatus').on('change',function(){
         type:"post",
         dataType:"json",
         data:{
-            'id':$(".id").val(),
-            'in_house_status_id':$(".inHouseStatus").val(),
+            'id':$(this).data('id'),
+            'in_house_status_id':$(this).val(),
         },
     })
     .done(function(data){
@@ -72,8 +65,8 @@ $('.engineerSkill').on('change',function(){
         type:"post",
         dataType:"json",
         data:{
-            'id':$(".id").val(),
-            'engineer_skill_id':$(".engineerSkill").val(),
+            'id':$(this).data('id'),
+            'engineer_skill_id':$(this).val(),
         },
     })
     .done(function(data){
@@ -92,8 +85,8 @@ $('.humanSkill').on('change',function(){
         type:"post",
         dataType:"json",
         data:{
-            'id':$(".id").val(),
-            'human_skill_id':$(".humanSkill").val(),
+            'id':$(this).data('id'),
+            'human_skill_id':$(this).val(),
         },
     })
     .done(function(data){

@@ -17,10 +17,29 @@ class EngineerController extends Controller
     {
         $query = Engineer::query();
         $keyword = $request->input('keyword');
-
         if(!empty($keyword)){
             $query->where('address', 'like', '%' . $keyword . '%')->orWhere('last_name', 'like', '%' . $keyword . '%')->orWhere('first_name', 'like', '%' . $keyword . '%')->orWhere('gender', 'like', '%' . $keyword . '%');
-        }
+        };
+
+        $employmentSqueeze = $request->input('employmentStatus');
+        if($employmentSqueeze != ""){
+            $query->where('employment_status_id', $employmentSqueeze);
+        };
+
+        $inHouseSqueeze = $request->input('inHouseStatus');
+        if($inHouseSqueeze != ""){
+            $query->where('in_house_status_id', $inHouseSqueeze);
+        };
+
+        $engineerSkillSqueeze = $request->input('engineerSkill');
+        if($engineerSkillSqueeze != ""){
+            $query->where('engineer_skill_id', $engineerSkillSqueeze);
+        };
+        
+        $humanSkillSqueeze = $request->input('humanSkill');
+        if($humanSkillSqueeze != ""){
+            $query->where('human_skill_id', $humanSkillSqueeze);
+        };
 
         $engineers = $query->sortable()->latest()->Paginate(3);
         $employmentStatuses = EmploymentStatus::all();
@@ -195,7 +214,6 @@ class EngineerController extends Controller
             'resume' => 'file|mimes:pdf',
             'job_history_sheet' => 'file|mimes:pdf',
         ]);//all()はだめ $validated = $request->validate(...)
-        unset($validated['_token']);
         $engineer->fill($validated); //fillじゃis_admin守れない
         $engineer->resume = isset($read_resume_path) ? $read_resume_path : ''; //null合体演算子
         $engineer->job_history_sheet = isset($read_job_path) ? $read_job_path : '';
@@ -219,11 +237,17 @@ class EngineerController extends Controller
         return response()->json($engineer);
     }
 
-    public function filter(Request $request)
-    {
-        $engineers = Engineer::all();
-        $employmentFilterble = $request->input('employment_status_id');
-        $filterble = $engineers->where('employment_status_id', $employmentFilterble);
-        return response()->json($filterble);
-    }
+    // public function squeeze(Request $request)
+    // {
+    //     $engineers = Engineer::query();
+    //     $employmentSqueeze = $request->input('employment_status_id');
+    //     $engineers = $engineers->where('employment_status_id', $employmentSqueeze)->paginate(3);
+
+    //     $employmentStatuses = EmploymentStatus::all();
+    //     $engineerSkills = EngineerSkill::all();
+    //     $humanSkills = HumanSkill::all();
+    //     $inHouseStatuses = InHouseStatus::all();
+    //     return view('engineers.index', compact('engineers', 'employmentStatuses', 'engineerSkills', 'humanSkills', 'inHouseStatuses'));
+    //     // return response()->json($squeeze);
+    // }
 }

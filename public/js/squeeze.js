@@ -81,125 +81,47 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./resources/js/dataUpdate.js":
-/*!************************************!*\
-  !*** ./resources/js/dataUpdate.js ***!
-  \************************************/
+/***/ "./resources/js/squeeze.js":
+/*!*********************************!*\
+  !*** ./resources/js/squeeze.js ***!
+  \*********************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-$('.comment').on('change', function () {
+$('.squeeze').on('change', function () {
   $.ajax({
     headers: {
       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     },
-    url: "engineers/indexUpdate",
-    type: "post",
-    dataType: "json",
+    url: "engineers/squeeze",
+    type: "get",
     data: {
-      'id': $(this).data('id'),
-      'comment': $(this).val() // `.comments` クラスを持っている要素に data-* 属性で id をもたせる
-
+      'employment_status_id': $('.squeeze').val()
     }
   }).done(function (data) {
     console.log(data);
+    $('.squeeze').html(data);
   }).fail(function (_data) {
-    alert("ajax Error");
-  });
-  return false;
-});
-$('.employment').on('change', function () {
-  $.ajax({
-    headers: {
-      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    },
-    url: "engineers/indexUpdate",
-    type: "post",
-    dataType: "json",
-    data: {
-      'id': $(this).data('id'),
-      'employment_status_id': $(this).val()
-    }
-  }).done(function (data) {
-    console.log(data);
-  }).fail(function (_data) {
-    alert("ajax Error");
-  });
-  return false;
-});
-$('.inHouseStatus').on('change', function () {
-  $.ajax({
-    headers: {
-      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    },
-    url: "engineers/indexUpdate",
-    type: "post",
-    dataType: "json",
-    data: {
-      'id': $(this).data('id'),
-      'in_house_status_id': $(this).val()
-    }
-  }).done(function (data) {
-    console.log(data);
-  }).fail(function (_data) {
-    alert("ajax Error");
-  });
-  return false;
-});
-$('.engineerSkill').on('change', function () {
-  $.ajax({
-    headers: {
-      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    },
-    url: "engineers/indexUpdate",
-    type: "post",
-    dataType: "json",
-    data: {
-      'id': $(this).data('id'),
-      'engineer_skill_id': $(this).val()
-    }
-  }).done(function (data) {
-    console.log(data);
-  }).fail(function (_data) {
-    alert("ajax Error");
-  });
-  return false;
-});
-$('.humanSkill').on('change', function () {
-  $.ajax({
-    headers: {
-      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    },
-    url: "engineers/indexUpdate",
-    type: "post",
-    dataType: "json",
-    data: {
-      'id': $(this).data('id'),
-      'human_skill_id': $(this).val()
-    }
-  }).done(function (data) {
-    console.log(data);
-  }).fail(function (_data) {
-    alert("ajax Error");
+    alert("絞り込み検索失敗");
   });
   return false;
 });
 
 /***/ }),
 
-/***/ 1:
-/*!******************************************!*\
-  !*** multi ./resources/js/dataUpdate.js ***!
-  \******************************************/
+/***/ 2:
+/*!***************************************!*\
+  !*** multi ./resources/js/squeeze.js ***!
+  \***************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /var/www/training_osajima/resources/js/dataUpdate.js */"./resources/js/dataUpdate.js");
+module.exports = __webpack_require__(/*! /var/www/training_osajima/resources/js/squeeze.js */"./resources/js/squeeze.js");
 
 
 /***/ })
