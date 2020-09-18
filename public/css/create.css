@@ -53,6 +53,10 @@ input {
     font-size: 100%;
 }
 
+.btn {
+    text-align: center;
+}
+
 .next_btn {
     display: inline-block;
     background-color: #20b2aa;
@@ -60,7 +64,7 @@ input {
     color: #FFF;
     width: 110px;
     height: 40px;
-    border-bottom: solid 2px #627295
+    border-bottom: solid 2px #627295;
 }
 
 .alert-danger {
