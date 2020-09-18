@@ -29,8 +29,9 @@
                 <tr>
                     <th>@sortablelink('id' , 'ID')</th>
                     <th>就職状況<br>
-                    <form action="{{ route('engineers.index') }}">
+                    <form class="squeeze"　action="{{ route('engineers.index') }}">
                         <select name="employmentStatus" onchange="submit(this.form);">
+                            <option>Squeeze</option>
                             <option value=""><a href="{{ route('engineers.index')}}">全て</a></option>
                             @foreach($employmentStatuses as $employmentStatus)
                                 <option value={{$employmentStatus->id}}>{{$employmentStatus->name}}</option>                           
@@ -41,8 +42,9 @@
                     <th>@sortablelink('last_name' , '名前')</th>
                     <th>@sortablelink('birth_date' , '年齢')</th>
                     <th>採用状況<br>
-                    <form action="{{ route('engineers.index') }}">
+                    <form class="squeeze" action="{{ route('engineers.index') }}">
                         <select name="inHouseStatus" onchange="submit(this.form);">
+                            <option>Squeeze</option>
                             <option value=""><a href="{{ route('engineers.index') }}">全て</a></option>
                             @foreach($inHouseStatuses as $inHouseStatus)
                                 <option value={{$inHouseStatus->id}}>{{$inHouseStatus->name}}</option>
@@ -53,8 +55,9 @@
                     <th>性別</th>
                     <th>@sortablelink('address' , '地域')</th>
                     <th>エンジニアスキル<br>
-                    <form action="{{ route('engineers.index') }}">
+                    <form class="squeeze" action="{{ route('engineers.index') }}">
                         <select name="engineerSkill" onchange="submit(this.form);">
+                            <option>Squeeze</option>
                             <option value=""><a href="{{ route('engineers.index') }}">全て</a></option>
                             @foreach($engineerSkills as $engineerSkill)
                                 <option value={{$engineerSkill->id}}>{{$engineerSkill->level}}</option> 
@@ -63,8 +66,9 @@
                     </form>
                     </th>
                     <th>ヒューマンスキル<br>
-                    <form action="{{ route('engineers.index') }}">
+                    <form class="squeeze" action="{{ route('engineers.index') }}">
                         <select name="humanSkill" onchange="submit(this.form);">
+                            <option>Squeeze</option>
                             <option value=""><a href="{{ route('engineers.index') }}">全て</a></option>
                             @foreach($humanSkills as $humanSkill)
                                 <option value={{$humanSkill->id}}>{{$humanSkill->level}}</option>

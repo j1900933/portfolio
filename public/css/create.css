@@ -35,13 +35,18 @@ input, select {
     background-color: #f5f5f5;
 }
 
-select {
-    -webkit-border-radius: 0px;
+.p-postal-code {
+    width: 385px;
+    height: 30px;
+    border-right:none;
+    border-left:none;
+    border-top:none;
+    border-bottom: solid 1px #d3d3d3;
+    background-color: #f5f5f5;
 }
 
-.resume_file {
-    height: 50px;
-    margin-top: 15px;
+select {
+    -webkit-border-radius: 0px;
 }
 
 .resume_file input {
@@ -49,11 +54,20 @@ select {
     background-color: #ffffff;
 }
 
+.job_history_sheet_file input {
+    border-bottom: none;
+    background-color: #ffffff;
+}
+
+.job_history_sheet_file {
+    margin-top: 150px;
+}
 input {
     font-size: 100%;
 }
 
 .btn {
+    margin-top: 150px;
     text-align: center;
 }
 
@@ -72,6 +86,10 @@ input {
     margin-right: auto; 
     margin-left: auto; 
     text-align: left;
+}
+
+img {
+    width: 100px;
 }
 
 

@@ -4,6 +4,7 @@
         <title>新規登録画面</title>
         <link rel="stylesheet" href="/css/engineers.css">
         <link rel="stylesheet" href="/css/create.css">
+        <script src="{{ mix('js/preview.js') }}" defer></script>
         <script src="https://yubinbango.github.io/yubinbango/yubinbango.js" charset="UTF-8"></script>
     </head>
     <body>
@@ -64,14 +65,18 @@
                 <label>最終学歴 <span>必須</span></label><br>
                 <input name="educational_background" value="{{ old('educational_background') }}" required placeholder="最終学歴"><br>
             </div>
-            <label class="resume_file">
-                履歴書<br>
-                <input type="file" name="resume">
-            </label>
-            <label class="resume_file">
-                職務履歴書<br>
-                <input type="file" name="job_history_sheet">
-            </label><br> 
+            <div class="file">
+                <label class="resume_file">
+                    履歴書<br>
+                    <input type="file" class="file2" name="resume">
+                    <div class="preview-1"></div>
+                </label>
+                <label class="job_history_sheet_file">
+                    職務履歴書<br>
+                    <input type="file" class="file2" name="job_history_sheet">
+                    <div class="preview-2"></div>
+                </label><br>
+            </div>
             <div class="btn">
                 <button class="next_btn" type="submit">確認画面へ</button>
             </div>
