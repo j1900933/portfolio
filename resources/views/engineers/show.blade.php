@@ -10,14 +10,13 @@
         <header class="page-header">
                 <h1>Engineer-Management</h1>
                 <ul class="nav"> 
-                    <li>Top</li>
+                    <li><a href="/">Top</a></li>
                     <li><a href="{{ route('engineers.index')}}">一覧</a></li>
                     <li><a href="{{ route('engineers.create')}}">新規登録</a></li>
                 </ul>
         </header>
         <article>
                 <div class="name">
-                    
                         <form method="post" action="{{ route('engineers.destroy', $engineer)}}">
                             @csrf
                             @method('DELETE')

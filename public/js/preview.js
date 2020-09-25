@@ -110,7 +110,7 @@ $.addEventListener('DOMContentLoaded', function () {
         var img = document.createElement("iframe");
         img.setAttribute('src', e.target.result);
         img.setAttribute('width', '400px');
-        img.setAttribute('height', '100px');
+        img.setAttribute('height', '200px');
         img.setAttribute('title', file.name);
         $preview1.appendChild(img);
       };
@@ -135,7 +135,7 @@ $.addEventListener('DOMContentLoaded', function () {
         var img = document.createElement('iframe');
         img.setAttribute('src', e.target.result);
         img.setAttribute('width', '400px');
-        img.setAttribute('height', '100px');
+        img.setAttribute('height', '200px');
         img.setAttribute('title', file.name);
         $preview2.appendChild(img);
       };

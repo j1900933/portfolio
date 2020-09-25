@@ -11,12 +11,12 @@
         <header class="page-header">
             <h1>Engineer-Management</h1>
             <ul class="nav"> 
-                <li>Top</li>
+                <li><a href="/">Top</a></li>
                 <li><a href="{{ route('engineers.index')}}">一覧</a></li>
-                <li>新規登録</li>
+                <li><a href="{{ route('engineers.create')}}">新規登録</a></li>
             </ul>
         </header>
-        <form class="h-adr"　action="{{ route('engineers.update', $engineer) }}" method="post" enctype="multipart/form-data">
+        <form class="h-adr" action="{{ route('engineers.update', $engineer) }}" method="post" enctype="multipart/form-data">
             @method('PATCH')
             @csrf
             @if ($errors->any())
@@ -64,16 +64,16 @@
                 <label class="resume_file">
                     履歴書<br>
                     <input type="file" name="resume" value="{{$engineer['resume']}}">
-                    <div class="preview-1"></div>
+                    <div class="preview-1"><p class="preview"></p></div>
                 </label>
                 <label class="job_history_sheet_file">
                     職務履歴書<br>
                     <input type="file" name="job_history_sheet" value="{{$engineer['job_history_sheet']}}">
-                    <div class="preview-2"></div>
+                    <div class="preview-2"><p class="preview"></p></div>
                 </label><br>
             </div>
             <div class="btn">
-                <button type="submit">更新</button>
+                <button>更新</button>
             </div>
         </form>
     </body>

@@ -60,14 +60,14 @@ select {
 }
 
 .job_history_sheet_file {
-    margin-top: 150px;
+    margin-top: 270px;
 }
 input {
     font-size: 100%;
 }
 
 .btn {
-    margin-top: 150px;
+    margin-top: 250px;
     text-align: center;
 }
 
@@ -90,6 +90,13 @@ input {
 
 img {
     width: 100px;
+}
+
+.preview {
+    width: 400px;
+    height: 200px;
+    border: dotted 1px gray;
+    text-align: center;
 }
 
 

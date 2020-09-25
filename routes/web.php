@@ -17,12 +17,12 @@ use function PHPSTORM_META\elementType;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+    return view('welcome');
+});
 
 
-Route::get('/', 'EngineerController@index')->name('engineers.index');
+// Route::get('/', 'EngineerController@index')->name('engineers.index');
 
 Route::post('engineers/confirm', 'EngineerController@confirm')->name('engineers.confirm');
 
@@ -30,8 +30,8 @@ Route::post('engineers/indexUpdate', 'EngineerController@indexUpdate')->name('en
 
 Route::get('engineers/squeeze', 'EngineerController@squeeze')->name('engineers.squeeze'); //名前のスペルが違う　filterble -> squeezeに修正
 
-Route::resource('engineers', 'EngineerController', ['except' => ['index']]);
+Route::resource('engineers', 'EngineerController');
 
-// Auth::routes();
+Auth::routes();
 
-// Route::get('/', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home');
