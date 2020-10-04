@@ -3,6 +3,7 @@
 use App\Http\Controllers\EngineerController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Auth\Middleware\Authenticate;
 
 use function PHPSTORM_META\elementType;
 
@@ -20,9 +21,6 @@ use function PHPSTORM_META\elementType;
 Route::get('/', function () {
     return view('welcome');
 });
-
-
-// Route::get('/', 'EngineerController@index')->name('engineers.index');
 
 Route::post('engineers/confirm', 'EngineerController@confirm')->name('engineers.confirm');
 

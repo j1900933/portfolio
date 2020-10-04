@@ -22,5 +22,6 @@ class DatabaseSeeder extends Seeder
         $this->call(HumanSkillsSeeder::class);
         $this->call(EmploymentStatusesSeeder::class);
         $this->call(InHouseStatusesSeeder::class);
+        $this->call(MassagesTableSeeder::class);
     }
 }

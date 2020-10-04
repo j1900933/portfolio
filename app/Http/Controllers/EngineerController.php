@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Engineer;
 use App\Models\HumanSkill;
 use App\Models\InHouseStatus;
+use Illuminate\Support\Facades\Auth;
 use Facade\Ignition\DumpRecorder\Dump;
 use Illuminate\Support\Facades\Log;
 
@@ -46,19 +47,30 @@ class EngineerController extends Controller
         $engineerSkills = EngineerSkill::all();
         $humanSkills = HumanSkill::all();
         $inHouseStatuses = InHouseStatus::all();
-        return view('engineers.index', compact('engineers', 'employmentStatuses', 'engineerSkills', 'humanSkills', 'inHouseStatuses'));
-
+        if (Auth::check()) {
+            return view('engineers.index', compact('engineers', 'employmentStatuses', 'engineerSkills', 'humanSkills', 'inHouseStatuses'));
+        } else {
+            return view('auth/login');
+        }
 
     }
 
     public function show(Engineer $engineer)
     {
-        return view('engineers.show', compact('engineer'));
+        if (Auth::check()){
+            return view('engineers.show', compact('engineer'));
+        } else {
+            return view('auth/login');
+        }
     }
 
     public function create()
     {
-        return view('engineers.create');
+        if(Auth::check()){
+            return view('engineers.create');
+        } else {
+            return view('auth/login');
+        }
     }
 
     public function confirm(Request $request)
@@ -167,7 +179,11 @@ class EngineerController extends Controller
 
     public function edit(Engineer $engineer)
     {
-        return view('engineers.edit', compact('engineer'));
+        if (Auth::check()){
+            return view('engineers.edit', compact('engineer'));
+        } else {
+            return view('auth/login');
+        }
     }
 
     public function update(Request $request, Engineer $engineer)
@@ -238,18 +254,4 @@ class EngineerController extends Controller
         $engineer->save();//バリデーションをやる（クライアントサイドから意図しない入力される）
         return response()->json($engineer);
     }
-
-    // public function squeeze(Request $request)
-    // {
-    //     $engineers = Engineer::query();
-    //     $employmentSqueeze = $request->input('employment_status_id');
-    //     $engineers = $engineers->where('employment_status_id', $employmentSqueeze)->paginate(3);
-
-    //     $employmentStatuses = EmploymentStatus::all();
-    //     $engineerSkills = EngineerSkill::all();
-    //     $humanSkills = HumanSkill::all();
-    //     $inHouseStatuses = InHouseStatus::all();
-    //     return view('engineers.index', compact('engineers', 'employmentStatuses', 'engineerSkills', 'humanSkills', 'inHouseStatuses'));
-    //     // return response()->json($squeeze);
-    // }
 }
