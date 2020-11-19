@@ -47,30 +47,18 @@ class EngineerController extends Controller
         $engineerSkills = EngineerSkill::all();
         $humanSkills = HumanSkill::all();
         $inHouseStatuses = InHouseStatus::all();
-        if (Auth::check()) {
-            return view('engineers.index', compact('engineers', 'employmentStatuses', 'engineerSkills', 'humanSkills', 'inHouseStatuses'));
-        } else {
-            return view('auth/login');
-        }
+        return view('engineers.index', compact('engineers', 'employmentStatuses', 'engineerSkills', 'humanSkills', 'inHouseStatuses'));
 
     }
 
     public function show(Engineer $engineer)
     {
-        if (Auth::check()){
-            return view('engineers.show', compact('engineer'));
-        } else {
-            return view('auth/login');
-        }
+        return view('engineers.show', compact('engineer'));
     }
 
     public function create()
     {
-        if(Auth::check()){
-            return view('engineers.create');
-        } else {
-            return view('auth/login');
-        }
+        return view('engineers.create');
     }
 
     public function confirm(Request $request)
@@ -179,11 +167,7 @@ class EngineerController extends Controller
 
     public function edit(Engineer $engineer)
     {
-        if (Auth::check()){
-            return view('engineers.edit', compact('engineer'));
-        } else {
-            return view('auth/login');
-        }
+        return view('engineers.edit', compact('engineer'));
     }
 
     public function update(Request $request, Engineer $engineer)

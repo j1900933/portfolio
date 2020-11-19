@@ -13,7 +13,7 @@ class EmploymentStatusesSeeder extends Seeder
     {
         DB::table('employment_statuses')->insert([
             [
-                'name' => 'ハコブネ研修中', 
+                'name' => '研修中', 
                 'name_num' => '1',
                 'created_at' => date('Y-m-d'),
                 'updated_at' => date('Y-m-d'),
