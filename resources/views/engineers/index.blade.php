@@ -133,8 +133,6 @@
                             @endif
                         </td>
                         <td>
-                        <!-- //type="button"追加 -->
-                        <!-- ファイルない時は表示を変える -->
                             @if($engineer->job_history_sheet == "")
                                 <button type="button" class="resume_none" onclick="alert('職務履歴書が登録されていません')">None</button>
                             @else

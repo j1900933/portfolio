@@ -215,9 +215,9 @@ class EngineerController extends Controller
             'educational_background' => 'required|string',
             'resume' => 'file|mimes:pdf',
             'job_history_sheet' => 'file|mimes:pdf',
-        ]);//all()はだめ $validated = $request->validate(...)
-        $engineer->fill($validated); //fillじゃis_admin守れない
-        $engineer->resume = isset($read_resume_path) ? $read_resume_path : ''; //null合体演算子
+        ]);
+        $engineer->fill($validated); 
+        $engineer->resume = isset($read_resume_path) ? $read_resume_path : ''; //三項演算子
         $engineer->job_history_sheet = isset($read_job_path) ? $read_job_path : '';
         $engineer->save();
         return redirect()->route('engineers.show' , $engineer);
@@ -235,7 +235,7 @@ class EngineerController extends Controller
     {
         $engineer = Engineer::find($request->id);
         $engineer->fill($request->all());
-        $engineer->save();//バリデーションをやる（クライアントサイドから意図しない入力される）
+        $engineer->save();
         return response()->json($engineer);
     }
 }
